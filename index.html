@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>HTML Table to JSON</title>
+    <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script src="./jquery.tabletojson.js"></script>
+    <style>
+      textarea { width: 640px; height: 200px }
+      .hidden { display: none }
+    </style>
+    <script>
+      $(function() {
+        $(document).on("click", "#run", function() {
+          var input = $("#input");
+          var output = $("#output");
+          var table = $($.parseHTML(input.val()));
+          var obj = table.tableToJSON({ignoreHiddenRows: false})
+          console.log(obj)
+          output.text(JSON.stringify(obj));
+        })
+      });
+    </script>
+  </head>
+  <body>
+    <header>
+      <h1>HTML Table to JSON</h1>
+    </header>
+    <section>
+      <h2>Input #HTML</h2>
+      <textarea id="input"></textarea>
+    </section>
+    <section>
+      <h2>Output #JSON</h2>
+      <textarea id="output"></textarea>
+    </section>
+    <section>
+      <button id="run">Convert</button>
+    </section>
+    <footer>
+      <h2>Credit</h2>
+      <p>The tool is powered by <a href="">Table-to-JSON</a></p>
+    </footer>
+  </body>
+</html>
